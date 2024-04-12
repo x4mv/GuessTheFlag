@@ -16,7 +16,9 @@ struct ContentView: View {
             Text("this is a test 2 ")
         }
         .padding()
+        .background(.red)
     }
+        
 }
 
 #Preview {
