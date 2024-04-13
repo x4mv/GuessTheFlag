@@ -19,6 +19,10 @@ struct ContentView: View {
     
     @State private var score = 0
     
+    @State private var showingWinner = false
+    @State private var WinnerTitle = ""
+    
+    
     
     
     var body: some View {
@@ -79,6 +83,12 @@ struct ContentView: View {
             Button("Continue", action: askQuestion)
         } message: {
             Text("Your score is \(score)")
+            
+        }
+        .alert(WinnerTitle, isPresented: $showingWinner){
+            Button("Restart Game"){}
+        } message: {
+            Text("Congratulations you've won the game with 8 correct answers!!!")
         }
         
     }
@@ -89,6 +99,12 @@ struct ContentView: View {
         if number == correctAnswers {
             scoreTitle = "Correct"
             score += 1
+        
+            if score == 8 {
+                showingWinner = true
+                score = 0
+                return
+            }
         }else{
             scoreTitle = "Wrong"
             score = 0
